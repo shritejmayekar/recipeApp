@@ -12,6 +12,9 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+app.use(express.json()); //Used to parse JSON bodies
+
+
 /// User Routes
 app.use('/user',userRouter)
 
@@ -22,7 +25,8 @@ app.use('/recipe',recipeRouter)
 /// conection to db
 mongoose.connect(process.env.MONGO_DB_URL, {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
 }, () => {
 
     /// starting the server
